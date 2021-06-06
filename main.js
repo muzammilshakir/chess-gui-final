@@ -139,24 +139,6 @@ function makeRandomMove () {
     removeHighlights('black')
     $board.find('.square-' + move.from).addClass('highlight-black')
     squareToHighlight = move.to
-    // .done(function(data) {
-    //     callback(data);
-    // })
-    // .fail(function(err) {
-    //     callback(err);
-    // });
-    
-    // var posting = $.post( url, { 
-    //     depth: depth,
-    //     board: cBoard,
-    //  } );
-    // console.log(posting)
-
-  // game over
-//   if (possibleMoves.length === 0) return
-
-//   var randomIdx = Math.floor(Math.random() * possibleMoves.length)
-//   game.move(possibleMoves[randomIdx])
   board.position(game.fen())
 
 }
@@ -171,38 +153,23 @@ function onDrop (source, target) {
     promotion: 'q' // NOTE: always promote to a queen for example simplicity
   })
   console.log("M!", move)
-
-  // illegal move
   if (move === null) return 'snapback'
-  // highlight white's move
   removeHighlights('white')
   $board.find('.square-' + source).addClass('highlight-white')
   $board.find('.square-' + target).addClass('highlight-white')
-
-  // make random legal move for black
   makeRandomMove();
-//   window.setTimeout(makeRandomMove, 250)
 }
 
-// update the board position after the piece snap
-// for castling, en passant, pawn promotion
 function onSnapEnd () {
   board.position(game.fen())
 }
 function onMouseoverSquare (square, piece) {
-    // get list of possible moves for this square
     var moves = game.moves({
       square: square,
       verbose: true
     })
-  
-    // exit if there are no moves available for this square
     if (moves.length === 0) return
-  
-    // highlight the square they moused over
     greySquare(square)
-  
-    // highlight the possible squares for this piece
     for (var i = 0; i < moves.length; i++) {
       greySquare(moves[i].to)
     }
@@ -239,17 +206,4 @@ function diffucltySet(d) {
         $("#dButton").text('Hard')
     }
     document.addEventListener('touchmove',preventDefault, false);
-    // // prevent scrolling from outside of input field
-    // $(document).on('touchstart', function(e) {
-    //     if (e.target.nodeName !== 'INPUT') {
-    //         e.preventDefault();
-    //     }
-    // });
-
-    // // prevent scrolling from within input field
-    // $(document).on('touchmove', function(e) {
-    //     if (e.target.nodeName == 'INPUT') {
-    //         e.preventDefault();
-    //     }
-    // });
 }
