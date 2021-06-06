@@ -1,16 +1,4 @@
-// prevent scrolling from outside of input field
-$(document).on('touchstart', function(e) {
-    if (e.target.nodeName !== 'INPUT') {
-        e.preventDefault();
-    }
-});
 
-// prevent scrolling from within input field
-$(document).on('touchmove', function(e) {
-    if (e.target.nodeName == 'INPUT') {
-        e.preventDefault();
-    }
-});
 
 var board = null
 var game = new Chess()
@@ -250,4 +238,18 @@ function diffucltySet(d) {
     else if (depth == 3) {
         $("#dButton").text('Hard')
     }
+    document.addEventListener('touchmove',preventDefault, false);
+    // // prevent scrolling from outside of input field
+    // $(document).on('touchstart', function(e) {
+    //     if (e.target.nodeName !== 'INPUT') {
+    //         e.preventDefault();
+    //     }
+    // });
+
+    // // prevent scrolling from within input field
+    // $(document).on('touchmove', function(e) {
+    //     if (e.target.nodeName == 'INPUT') {
+    //         e.preventDefault();
+    //     }
+    // });
 }
