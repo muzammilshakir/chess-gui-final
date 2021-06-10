@@ -38,6 +38,7 @@ function onDragStart (source, piece, position, orientation) {
 }
 
 function makeRandomMove () {
+    $("#playStatus").text("AI is thinking ....");
     console.log(game.board())
     var oBoard = game.board()
     var cBoard = []
@@ -140,6 +141,7 @@ function makeRandomMove () {
     $board.find('.square-' + move.from).addClass('highlight-black')
     squareToHighlight = move.to
   board.position(game.fen())
+  $("#playStatus").text("USER Turn");
 
 }
 
